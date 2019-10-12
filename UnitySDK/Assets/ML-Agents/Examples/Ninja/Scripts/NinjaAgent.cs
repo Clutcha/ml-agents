@@ -72,21 +72,21 @@ public class NinjaAgent : Agent
         if (vectorAction[1] == 1f && isGrounded)
         {
             isJumping = true;
-            jumpTimeCounter = jumpTime; 
+            //jumpTimeCounter = jumpTime; 
             velocity.y = jumpForce;
         }
-        else if (vectorAction[1] == 1f && isJumping)
-        {
-            if (jumpTimeCounter > 0)
-            {
-                velocity.y = jumpForce;
-                jumpTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                isJumping = false; 
-            }
-        }
+        //else if (vectorAction[1] == 1f && isJumping)
+        //{
+        //    if (jumpTimeCounter > 0)
+        //    {
+        //        velocity.y = jumpForce;
+        //        jumpTimeCounter -= Time.deltaTime;
+        //    }
+        //    else
+        //    {
+        //        isJumping = false; 
+        //    }
+        //}
         else if (vectorAction[1] != 1f)
         {
             isJumping = false;
