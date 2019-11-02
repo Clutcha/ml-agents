@@ -13,23 +13,36 @@ MonoBehaviour:
   m_Name: NinjaPlayer
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 1
+    vectorObservationSize: 2
     numStackedVectorObservations: 1
-    vectorActionSize: 0200000001000000
+    vectorActionSize: 030000000200000002000000
     cameraResolutions: []
     vectorActionDescriptions:
     - Move
     - Jump
+    - Attack
     vectorActionSpaceType: 0
   keyContinuousPlayerActions: []
   axisContinuousPlayerActions: []
   discretePlayerActions:
+  - key: 0
+    branchIndex: 0
+    value: 0
   - key: 275
     branchIndex: 0
     value: 1
   - key: 276
     branchIndex: 0
     value: 2
+  - key: 0
+    branchIndex: 0
+    value: 0
   - key: 273
     branchIndex: 1
+    value: 1
+  - key: 0
+    branchIndex: 2
+    value: 0
+  - key: 32
+    branchIndex: 2
     value: 1

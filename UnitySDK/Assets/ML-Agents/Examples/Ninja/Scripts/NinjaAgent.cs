@@ -17,10 +17,7 @@ public class NinjaAgent : Agent
 
     [SerializeField]
     private float jumpForce;
-    public float jumpTime;
-    private float jumpTimeCounter;
     private bool isJumping;
-    private bool isFirstJump;
 
     [Header("Ninja Agent Settings")]
     public float moveSpeed = 1f;
@@ -43,18 +40,16 @@ public class NinjaAgent : Agent
         isFacingRight = true;
         isJumping = false;
         direction = 0;
-        isFirstJump = true;
     }
 
     public override void AgentAction(float[] vectorAction, string textAction)
     {
-        //Debug.Log(vectorAction[0].ToString() + " " + vectorAction[1].ToString());
         // Handle Movment
         if (vectorAction[0] == 0f)
         {
             direction = 0;
         }
-        if (vectorAction[0] == 1f)
+        else if (vectorAction[0] == 1f)
         {
             direction = 1;
             AddReward(0.1f);
@@ -71,29 +66,23 @@ public class NinjaAgent : Agent
         isGrounded = IsGrounded();
         if (vectorAction[1] == 1f && isGrounded)
         {
+            AddReward(0.02f);
             isJumping = true;
-            //jumpTimeCounter = jumpTime; 
             velocity.y = jumpForce;
         }
-        //else if (vectorAction[1] == 1f && isJumping)
-        //{
-        //    if (jumpTimeCounter > 0)
-        //    {
-        //        velocity.y = jumpForce;
-        //        jumpTimeCounter -= Time.deltaTime;
-        //    }
-        //    else
-        //    {
-        //        isJumping = false; 
-        //    }
-        //}
-        else if (vectorAction[1] != 1f)
+        else
         {
             isJumping = false;
         }
 
+        if (vectorAction[2] == 1f)
+        {
+            animator.SetTrigger("attack");
+        }
+
         agentRigidbody.velocity = velocity;
-        animator.SetFloat("speed", Math.Abs(direction));
+        animator.SetFloat("velocityX", Math.Abs(direction));
+        animator.SetBool("grounded", isGrounded);
         Flip(direction);
 
         // Tiny negative reward
@@ -128,5 +117,6 @@ public class NinjaAgent : Agent
     public override void CollectObservations()
     {
         AddVectorObs(direction);
+        AddVectorObs(isJumping);
     }
 }

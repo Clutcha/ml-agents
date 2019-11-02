@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: NinjaLearning
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 1
+    vectorObservationSize: 2
     numStackedVectorObservations: 1
-    vectorActionSize: 0200000001000000
+    vectorActionSize: 030000000200000002000000
     cameraResolutions: []
     vectorActionDescriptions:
     - Move
     - Jump
+    - Attack
     vectorActionSpaceType: 0
-  model: {fileID: 5022602860645237092, guid: fced66b826fb648788a7c79f5f0e84fd, type: 3}
+  model: {fileID: 0}
   inferenceDevice: 0
